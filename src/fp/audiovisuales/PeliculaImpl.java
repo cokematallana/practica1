@@ -20,11 +20,11 @@ public class PeliculaImpl implements Pelicula {
 
 	private void rellenaMiembro(List<MiembroStaff> lista, String s, Map<Integer, MiembroStaff> miembros) {
 		String[] keys = s.split("#");
-		for (int i=0; i<keys.length ; i++) {
-			Integer key= new Integer(keys[i].trim());
-			MiembroStaff value= miembros.get(key);
+		for (String word : keys) {
+			Integer key = new Integer(word.trim());
+			MiembroStaff value = miembros.get(key);
 			lista.add(value);
-			
+		}
 	}
 
 	public PeliculaImpl(String s, Map<Integer, MiembroStaff> miembros) {
@@ -81,7 +81,8 @@ public class PeliculaImpl implements Pelicula {
 		}
 
 		// Checkers.check(R_DURACION, restriccionDuracion(duracion));
-		// Checkers.check(R_FECHAESTRENO, restriccionFechaEstreno(fechaEstreno));
+		// Checkers.check(R_FECHAESTRENO,
+		// restriccionFechaEstreno(fechaEstreno));
 
 		this.id = id;
 		this.titulo = titulo;
