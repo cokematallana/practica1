@@ -18,15 +18,6 @@ public class PeliculaImpl implements Pelicula {
 	private TipoMetraje tipoMetraje;
 	private List<MiembroStaff> directores, actores, guionistas;
 
-	private void rellenaMiembro(List<MiembroStaff> lista, String s, Map<Integer, MiembroStaff> miembros) {
-		String[] keys = s.split("#");
-		for (String word : keys) {
-			Integer key = new Integer(word.trim());
-			MiembroStaff value = miembros.get(key);
-			lista.add(value);
-		}
-	}
-
 	public PeliculaImpl(String s, Map<Integer, MiembroStaff> miembros) {
 		String[] trozos = s.split(";");
 		if (trozos.length != 13) {
@@ -94,11 +85,19 @@ public class PeliculaImpl implements Pelicula {
 		this.genero = genero;
 		this.productora = productora;
 		this.nacionalidad = nacionalidad;
-		this.directores = directores;
-		this.guionistas = guionistas;
+		rellenaMiembro(this.actores, actores, miembros);
+		rellenaMiembro(this.directores, directores, miembros);
+		rellenaMiembro(this.guionistas, guionistas, miembros);
 		this.urlPoster = url;
 	}
 
+	private void rellenaMiembro(List<MiembroStaff> lista, String s, Map<Integer, MiembroStaff> miembros) {
+		String[] keys = s.split("#");
+		for (String word : keys) {
+			Integer key = new Integer(word.trim());
+			MiembroStaff value = miembros.get(key);
+			lista.add(value);
+		}
 	}
 
 	@Override
