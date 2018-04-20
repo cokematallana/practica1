@@ -99,6 +99,10 @@ public class PeliculaImpl implements Pelicula {
 			lista.add(value);
 		}
 	}
+	
+	private void rellenaMetraje(TipoMetraje metraje, Duration duracion) {
+		
+	}
 
 	@Override
 	public int compareTo(Pelicula x) {
@@ -233,8 +237,15 @@ public class PeliculaImpl implements Pelicula {
 
 	@Override
 	public Boolean esActor(String nombreActor) {
-
-		return null;
+		Boolean res = false;
+		int i;
+		for (i = 0; i < getActores().size(); i++) {
+			if (nombreActor == getActores().get(i).getNombre()) {
+				res = true;
+				break;
+			}
+		}
+		return res;
 	}
 
 	@Override

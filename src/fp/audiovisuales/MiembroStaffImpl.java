@@ -118,19 +118,29 @@ public class MiembroStaffImpl {
 		LocalDate fechaFuncion = null;
 		if (trozos[3] != null) {
 			fechaFuncion = LocalDate.parse(trozos[3].trim());
-		//	String lugarNacimiento = trozos[4].trim();
-		//	String alias = trozos[5].trim();
-
-			// RESTRICCIONES
-
-			this.id = id;
-			this.nombre = nombre;
-			this.fechaNacimiento = fechaNacimiento;
-			this.fechaFuncion = fechaFuncion;
-			this.lugarNacimiento = lugarNacimiento;
-			this.alias = alias;
-
 		}
+
+		String lugarNacimiento = null;
+		if (trozos[4] != null) {
+			lugarNacimiento = trozos[4].trim();
+		}
+
+		String alias = null;
+		if (trozos[5] != null) {
+			alias = trozos[5].trim();
+		}
+		// String alias = trozos[5].trim();
+
+		// RESTRICCIONES
+
+		this.id = id;
+		this.nombre = nombre;
+		this.fechaNacimiento = fechaNacimiento;
+		this.fechaFuncion = fechaFuncion;
+		this.lugarNacimiento = lugarNacimiento;
+		this.alias = alias;
+
+	}
 
 	}
 
