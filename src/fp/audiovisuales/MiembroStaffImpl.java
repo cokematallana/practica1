@@ -11,6 +11,7 @@ public class MiembroStaffImpl {
 	private Integer id;
 	private String nombre, lugarNacimiento, alias;
 	private LocalDate fechaNacimiento, fechaFuncion;
+	private static final String R_FECHAFUNCION = "No puede morir antes que nacer";
 
 	// getter y setter si son modificable y observables
 	public String getLugarNacimiento() {
@@ -35,7 +36,7 @@ public class MiembroStaffImpl {
 	}
 
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-		Checkers.check("No puede morir antes de nacer", RestriccionfechaFuncionn(fechaNacimiento, this.fechaFuncion));
+		Checkers.check(R_FECHAFUNCION, RestriccionfechaFuncionn(fechaNacimiento, this.fechaFuncion));
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -45,7 +46,7 @@ public class MiembroStaffImpl {
 
 	public void setFechaFuncion(LocalDate fechaFuncion) {
 
-		Checkers.check("No puede morir antes de nacer", RestriccionfechaFuncionn(this.fechaNacimiento, fechaFuncion));
+		Checkers.check(R_FECHAFUNCION, RestriccionfechaFuncionn(this.fechaNacimiento, fechaFuncion));
 		this.fechaFuncion = fechaFuncion;
 	}
 
@@ -69,12 +70,13 @@ public class MiembroStaffImpl {
 	}
 
 	// Constructor1
-	public MiembroStaffImpl(Integer id, String nombre, LocalDate fechaNacimiento, LocalDate fechaDefuncion,
+	public MiembroStaffImpl(Integer id, String nombre, LocalDate fechaNacimiento, LocalDate fechaFuncion,
 			String lugarNacimiento, String alias) {
+		Checkers.check(R_FECHAFUNCION, RestriccionfechaFuncionn(fechaNacimiento, fechaFuncion));
 		this.id = id;
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
-		this.fechaFuncion = fechaDefuncion;
+		this.fechaFuncion = fechaFuncion;
 		this.lugarNacimiento = lugarNacimiento;
 		this.alias = alias;
 	}
@@ -82,6 +84,7 @@ public class MiembroStaffImpl {
 	// Constructor2
 	public MiembroStaffImpl(Integer id, String nombre, LocalDate fechaNacimiento, String lugarNacimiento,
 			String alias) {
+		Checkers.check(R_FECHAFUNCION, RestriccionfechaFuncionn(fechaNacimiento, fechaFuncion));
 		this.id = id;
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
@@ -92,6 +95,7 @@ public class MiembroStaffImpl {
 
 	// Constructor3
 	public MiembroStaffImpl(Integer id, String nombre) {
+		Checkers.check(R_FECHAFUNCION, RestriccionfechaFuncionn(fechaNacimiento, fechaFuncion));
 		this.id = id;
 		this.nombre = nombre;
 		this.fechaNacimiento = null;
@@ -129,18 +133,14 @@ public class MiembroStaffImpl {
 		if (trozos[5] != null) {
 			alias = trozos[5].trim();
 		}
-		// String alias = trozos[5].trim();
-
-		// RESTRICCIONES
-
+		Checkers.check(R_FECHAFUNCION, RestriccionfechaFuncionn(fechaNacimiento, fechaFuncion));
+		
 		this.id = id;
 		this.nombre = nombre;
 		this.fechaNacimiento = fechaNacimiento;
 		this.fechaFuncion = fechaFuncion;
 		this.lugarNacimiento = lugarNacimiento;
 		this.alias = alias;
-
-	}
 
 	}
 
